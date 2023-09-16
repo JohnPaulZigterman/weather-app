@@ -4,3 +4,27 @@
     border: solid black;
     box-shadow: 4px 4px 4px;
 }
+
+.button-list {
+    background-color: blanchedalmond;
+    border: 1px solid black;
+    color: rgb(0, 0, 0);
+    padding: 10px 24px;
+}
+
+.button-list button {
+    background-color: #022ba5; 
+    border: 1px solid black;
+    color: white;
+    padding: 10px 24px;
+    width: 50%;
+    display: block;
+  }
+  
+  .button-list button:not(:last-child) {
+    border-bottom: none;
+  }
+  
+  .button-list button:hover {
+    background-color: #3e8e41;
+  }
