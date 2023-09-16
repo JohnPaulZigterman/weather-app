@@ -1,9 +1,26 @@
 var citySearch = document.querySelector('#city-search');
 var submitButton = document.querySelector('#submit-button');
+var boxContainer = document.querySelector('#box-container');
 
 function weatherReport (lat, lon) {
-    console.log (lat);
-    console.log (lon);
+   var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=efb4f88ccfdc769e771215392c1a61ec";
+
+   fetch (queryURL2)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        
+        console.log(data);
+
+        for (let i = 0; i < 40; i += 8) {
+        var feelsLikeCelsius = (data.list[i].main.feels_like - 273.15).toFixed(1);
+        var milliseconds = (data.list[i].dt * 1000);
+        var dateObject = new Date(milliseconds);
+        boxContainer.innerHTML += "<h2>" + dateObject + "</h2>";
+        boxContainer.innerHTML += "<h4>Feels Like: </h4><p>" + feelsLikeCelsius + "C°</p>";
+        }
+    })
 }
 
 submitButton.addEventListener('click', function(event) {
