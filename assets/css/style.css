@@ -1,0 +1,6 @@
+.weather-box {
+    margin: 4px;
+    padding: 4px;
+    border: solid black;
+    box-shadow: 4px 4px 4px;
+}
