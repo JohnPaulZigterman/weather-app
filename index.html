@@ -11,22 +11,24 @@
     
     <body>
         
-        <nav>    
-            <form class="col-3 button-list">
+        <nav class="d-inline-flex justify-content-between">    
+            <form class="col-3 button-list float-left w-50">
                 <h2>Search For A City</h2>
                 <input id="city-search">
                 <input type="submit" id="submit-button">
             </form>
 
+
+            <h1 class="float-right">Weather Forecast By City</h1>
         </nav>
         <main class="d-flex">
-            <div id="saved-cities" class="float-left button-list col-3">
+            <div id="saved-cities" class="float-left button-list col-3 w-25">
                 
             </div>
 
             <div>
-                <div id="hero-container" class="d-flex float-right col-10 weather-container"></div>
-                <div id="box-container" class="d-flex float-right col-10 weather-container"></div>
+                <div id="hero-container" class="d-flex float-right col-12 weather-container"></div>
+                <div id="box-container" class="d-flex float-right col-12 weather-container"></div>
             </div>
 
         </main>

@@ -80,14 +80,14 @@ function weatherReport (lat, lon) {
         var milliseconds = (data.list[0].dt * 1000);
         var weatherIcon = data.list[0].weather[0].icon;
         var dateObject = new Date(milliseconds).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"});
-        heroContainer.innerHTML += "<div class='col-10 weather-box'><h3>" + dateObject + "</h3><img src='https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'><h4>Temp: </h4><p>" + tempCelsius + "C°</p><h4>Humidity: </h4><p>" + data.list[0].main.humidity + "%</p><h4>Wind Speed: </h4><p>" + data.list[0].wind.speed + "mph</p></div><br>";
+        heroContainer.innerHTML += "<div class='col-12 weather-box'><h3>" + dateObject + "</h3><img src='https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'><h4>Temp: </h4><p>" + tempCelsius + "C°</p><h4>Humidity: </h4><p>" + data.list[0].main.humidity + "%</p><h4>Wind Speed: </h4><p>" + data.list[0].wind.speed + "mph</p></div><br>";
 
         for (let i = 7; i < 40; i += 8) {
             var tempCelsius = (data.list[i].main.temp - 273.15).toFixed(1);
         var milliseconds = (data.list[i].dt * 1000);
         var dateObject = new Date(milliseconds).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"});
         var weatherIcon = data.list[i].weather[0].icon;
-        boxContainer.innerHTML += "<div class='col-2 weather-box'><h4>" + dateObject + "</h4><img src='https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'><h4>Temp: </h4><p>" + tempCelsius + "C°</p><h4>Humidity: </h4><p>" + data.list[i].main.humidity + "%</p><h4>Wind Speed: </h4><p>" + data.list[i].wind.speed + "mph</p></div>";
+        boxContainer.innerHTML += "<div class='col-3 weather-box'><h4>" + dateObject + "</h4><img src='https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'><h4>Temp: </h4><p>" + tempCelsius + "C°</p><h4>Humidity: </h4><p>" + data.list[i].main.humidity + "%</p><h4>Wind Speed: </h4><p>" + data.list[i].wind.speed + "mph</p></div>";
         }
     })
 }
