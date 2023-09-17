@@ -5,7 +5,6 @@ var boxContainer = document.querySelector('#box-container');
 var heroContainer = document.querySelector('#hero-container');
 var savedCities = document.querySelector('#saved-cities');
 
-localStorage.setItem('cityList', '["London", "New York", "Chicago", "Los Angeles"]');
 //declares autoFill function
 function autoFill () {
     if (localStorage.getItem('cityList') == null) {
@@ -14,6 +13,8 @@ function autoFill () {
 
     var cityListString = localStorage.getItem('cityList');
     var cityList = JSON.parse(cityListString);
+
+    savedCities.innerHTML = "";
 
     for (var i = 0; i < cityList.length; i++) {
         savedCities.innerHTML += '<button id="' + cityList[i] + '">' + cityList[i] + '</button>';
@@ -63,6 +64,26 @@ submitButton.addEventListener('click', function(event) {
 
     //cityQuery variable is set to search field input
     var cityQuery = citySearch.value;
+
+    //adds cityQuery to local storage array of saved cities
+
+    //sets cityListString to the current local storage cityList
+    var cityListString = localStorage.getItem('cityList');
+
+    //sets cityList to the parsed array of cityListString
+    var cityList = JSON.parse(cityListString);
+
+    //pushes the cityQuery value to the cityList array
+    cityList.push(cityQuery);
+
+    //makes cityList back into a string
+    cityListString = JSON.stringify(cityList);
+
+    //stores cityList as updated string
+    localStorage.setItem('cityList', cityListString);
+
+    //calls autoFill function to refill saved cities
+    autoFill();
 
     //establishes query URL for the city to get lat & lon
     var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityQuery + "&limit=5&appid=efb4f88ccfdc769e771215392c1a61ec";
