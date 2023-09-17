@@ -1,18 +1,32 @@
+//establishes variables for HTML id tags
 var citySearch = document.querySelector('#city-search');
 var submitButton = document.querySelector('#submit-button');
 var boxContainer = document.querySelector('#box-container');
 var heroContainer = document.querySelector('#hero-container');
+var savedCities = document.querySelector('#saved-cities');
 
+//declares autoFill function
+function autoFill () {
+
+}
+
+//declares weatherReport function with lat and lon inputs
 function weatherReport (lat, lon) {
+
+    //establishes query URL based on lat and lon coords
    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=efb4f88ccfdc769e771215392c1a61ec";
 
+   //sends fetch request for query URL
    fetch (queryURL2)
+   //standard json response
     .then(function(response) {
         return response.json();
     })
+    //converts data and sends to appropriate elements
     .then(function(data) {
         
         console.log(data);
+        heroContainer.innerHTML = "";
         boxContainer.innerHTML = "";
 
 
@@ -30,14 +44,22 @@ function weatherReport (lat, lon) {
     })
 }
 
+
+//event listener for submit button
 submitButton.addEventListener('click', function(event) {
+    
+    //prevents default activity
     event.preventDefault();
 
+    //cityQuery variable is set to search field input
     var cityQuery = citySearch.value;
 
+    //establishes query URL for the city to get lat & lon
     var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityQuery + "&limit=5&appid=efb4f88ccfdc769e771215392c1a61ec";
 
+    //sends fetch request to established URL
     fetch (queryURL)
+        //standard JSON response
         .then(function(response) {
             return response.json();
         })
@@ -51,3 +73,6 @@ submitButton.addEventListener('click', function(event) {
         })
 
 });
+
+//calls autofill function on page load
+autoFill;
