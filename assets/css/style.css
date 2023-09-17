@@ -51,12 +51,18 @@ nav {
   }
 
 
+  .weather-container {
+    justify-content: space-between;
+  }
+
   .weather-container div {
     text-wrap: wrap;
   }
 
   .weather-container div h4, p {
     font-size: 80%;
+    margin: auto;
+    padding: 0px;
   }
 
   #weather-title {
