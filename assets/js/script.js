@@ -5,6 +5,7 @@ var boxContainer = document.querySelector('#box-container');
 var heroContainer = document.querySelector('#hero-container');
 var savedCities = document.querySelector('#saved-cities');
 
+
 //declares autoFill function
 function autoFill () {
 
@@ -26,7 +27,32 @@ function autoFill () {
 
     //populates saved cities buttons with array from local storage
     for (var i = 0; i < cityList.length; i++) {
-        savedCities.innerHTML += '<button id="' + cityList[i] + '">' + cityList[i] + '</button>';
+        savedCities.innerHTML += '<button class="savedCityButton" id="' + cityList[i] + '">' + cityList[i] + '</button>';
+    }
+
+    var savedCityButton = document.querySelectorAll('.savedCityButton');
+
+    for (let i = 0; i < savedCityButton.length; i++) {
+        savedCityButton[i].addEventListener("click", function(event) {
+            event.preventDefault();
+            cityQuery = savedCityButton[i].id;
+            console.log(cityQuery);
+            var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityQuery + "&limit=5&appid=efb4f88ccfdc769e771215392c1a61ec";
+        
+            fetch (queryURL)
+                //standard JSON response
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+        
+                    console.log(data);
+                    console.log(data[0].local_names.en);
+                    var cityLat = data[0].lat;
+                    var cityLon = data[0].lon;
+                    weatherReport(cityLat, cityLon);
+                })
+        });
     }
 }
 
@@ -115,6 +141,8 @@ submitButton.addEventListener('click', function(event) {
         })
 
 });
+
+
 
 //calls autofill function on page load
 autoFill();
