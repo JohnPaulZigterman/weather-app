@@ -78,7 +78,7 @@ function weatherReport (lat, lon) {
         var milliseconds = (data.list[0].dt * 1000);
         var weatherIcon = data.list[0].weather[0].icon;
         var dateObject = new Date(milliseconds).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"});
-        heroContainer.innerHTML += "<div class='col-12 weather-box'><h3>" + data.city.name + ": " + dateObject + "</h3><img src='https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'><h4>Temp: </h4><p>" + tempCelsius + "C°</p><h4>Humidity: </h4><p>" + data.list[0].main.humidity + "%</p><h4>Wind Speed: </h4><p>" + data.list[0].wind.speed + "mph</p></div><br>";
+        heroContainer.innerHTML += "<div class='w-100 weather-box'><h3>" + data.city.name + ": " + dateObject + "</h3><img src='https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'><h4>Temp: </h4><p>" + tempCelsius + "C°</p><h4>Humidity: </h4><p>" + data.list[0].main.humidity + "%</p><h4>Wind Speed: </h4><p>" + data.list[0].wind.speed + "mph</p></div><br>";
 
         for (let i = 7; i < 40; i += 8) {
             var tempCelsius = (data.list[i].main.temp - 273.15).toFixed(1);
