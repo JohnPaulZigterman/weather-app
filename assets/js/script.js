@@ -1,6 +1,7 @@
 var citySearch = document.querySelector('#city-search');
 var submitButton = document.querySelector('#submit-button');
 var boxContainer = document.querySelector('#box-container');
+var heroContainer = document.querySelector('#hero-container');
 
 function weatherReport (lat, lon) {
    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=efb4f88ccfdc769e771215392c1a61ec";
@@ -14,7 +15,13 @@ function weatherReport (lat, lon) {
         console.log(data);
         boxContainer.innerHTML = "";
 
-        for (let i = 0; i < 40; i += 8) {
+
+        var feelsLikeCelsius = (data.list[0].main.feels_like - 273.15).toFixed(1);
+        var milliseconds = (data.list[0].dt * 1000);
+        var dateObject = new Date(milliseconds).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"});
+        heroContainer.innerHTML += "<div class='col-10 weather-box'><h3>" + dateObject + "</h3><h4>Feels Like: </h4><p>" + feelsLikeCelsius + "C°</p></div><br>";
+
+        for (let i = 7; i < 40; i += 8) {
         var feelsLikeCelsius = (data.list[i].main.feels_like - 273.15).toFixed(1);
         var milliseconds = (data.list[i].dt * 1000);
         var dateObject = new Date(milliseconds).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"});

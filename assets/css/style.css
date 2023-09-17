@@ -21,9 +21,6 @@
     display: block;
   }
   
-  .button-list button:not(:last-child) {
-    border-bottom: none;
-  }
   
   .button-list button:hover {
     background-color: #3e8e41;
