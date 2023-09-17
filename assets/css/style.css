@@ -21,6 +21,7 @@ nav {
     padding: 4px;
     border: solid black;
     box-shadow: 4px 4px 4px;
+    background-color: rgb(195, 250, 196);
 }
 
 .button-list {

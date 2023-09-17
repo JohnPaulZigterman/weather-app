@@ -36,7 +36,6 @@ function autoFill () {
         savedCityButton[i].addEventListener("click", function(event) {
             event.preventDefault();
             cityQuery = savedCityButton[i].id;
-            console.log(cityQuery);
             var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityQuery + "&limit=5&appid=efb4f88ccfdc769e771215392c1a61ec";
         
             fetch (queryURL)
@@ -46,8 +45,6 @@ function autoFill () {
                 })
                 .then(function(data) {
         
-                    console.log(data);
-                    console.log(data[0].local_names.en);
                     var cityLat = data[0].lat;
                     var cityLon = data[0].lon;
                     weatherReport(cityLat, cityLon);
@@ -71,7 +68,6 @@ function weatherReport (lat, lon) {
     //converts data and sends to appropriate elements
     .then(function(data) {
         
-        console.log(data);
         heroContainer.innerHTML = "";
         boxContainer.innerHTML = "";
 
@@ -132,9 +128,6 @@ submitButton.addEventListener('click', function(event) {
             return response.json();
         })
         .then(function(data) {
-
-            console.log(data);
-            console.log(data[0].local_names.en);
             var cityLat = data[0].lat;
             var cityLon = data[0].lon;
             weatherReport(cityLat, cityLon);
