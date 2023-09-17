@@ -5,9 +5,19 @@ var boxContainer = document.querySelector('#box-container');
 var heroContainer = document.querySelector('#hero-container');
 var savedCities = document.querySelector('#saved-cities');
 
+localStorage.setItem('cityList', '["London", "New York", "Chicago", "Los Angeles"]');
 //declares autoFill function
 function autoFill () {
+    if (localStorage.getItem('cityList') == null) {
+        localStorage.setItem('cityList', '["London", "New York", "Chicago", "Los Angeles"]');
+    }
 
+    var cityListString = localStorage.getItem('cityList');
+    var cityList = JSON.parse(cityListString);
+
+    for (var i = 0; i < cityList.length; i++) {
+        savedCities.innerHTML += '<button id="' + cityList[i] + '">' + cityList[i] + '</button>';
+    }
 }
 
 //declares weatherReport function with lat and lon inputs
@@ -75,4 +85,4 @@ submitButton.addEventListener('click', function(event) {
 });
 
 //calls autofill function on page load
-autoFill;
+autoFill();
