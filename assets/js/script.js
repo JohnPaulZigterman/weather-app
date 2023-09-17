@@ -7,15 +7,24 @@ var savedCities = document.querySelector('#saved-cities');
 
 //declares autoFill function
 function autoFill () {
+
+    //checks if cityList is declared
     if (localStorage.getItem('cityList') == null) {
+
+        //if undeclared, sets cityList to an array of four cities
         localStorage.setItem('cityList', '["London", "New York", "Chicago", "Los Angeles"]');
     }
 
+    //retrieves cityList in local storage as a string
     var cityListString = localStorage.getItem('cityList');
+
+    //converts that string to an array
     var cityList = JSON.parse(cityListString);
 
+    //clears saved cities buttons
     savedCities.innerHTML = "";
 
+    //populates saved cities buttons with array from local storage
     for (var i = 0; i < cityList.length; i++) {
         savedCities.innerHTML += '<button id="' + cityList[i] + '">' + cityList[i] + '</button>';
     }
@@ -41,16 +50,18 @@ function weatherReport (lat, lon) {
         boxContainer.innerHTML = "";
 
 
-        var feelsLikeCelsius = (data.list[0].main.feels_like - 273.15).toFixed(1);
+        var tempCelsius = (data.list[0].main.temp - 273.15).toFixed(1);
         var milliseconds = (data.list[0].dt * 1000);
+        var weatherIcon = data.list[0].weather[0].icon;
         var dateObject = new Date(milliseconds).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"});
-        heroContainer.innerHTML += "<div class='col-10 weather-box'><h3>" + dateObject + "</h3><h4>Feels Like: </h4><p>" + feelsLikeCelsius + "C°</p></div><br>";
+        heroContainer.innerHTML += "<div class='col-10 weather-box'><h3>" + dateObject + "</h3><img src='https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'><h4>Temp: </h4><p>" + tempCelsius + "C°</p><h4>Humidity: </h4><p>" + data.list[0].main.humidity + "%</p><h4>Wind Speed: </h4><p>" + data.list[0].wind.speed + "mph</p></div><br>";
 
         for (let i = 7; i < 40; i += 8) {
-        var feelsLikeCelsius = (data.list[i].main.feels_like - 273.15).toFixed(1);
+            var tempCelsius = (data.list[i].main.temp - 273.15).toFixed(1);
         var milliseconds = (data.list[i].dt * 1000);
         var dateObject = new Date(milliseconds).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"});
-        boxContainer.innerHTML += "<div class='col-2 weather-box'><h4>" + dateObject + "</h4><h5>Feels Like: </h5><p>" + feelsLikeCelsius + "C°</p></div>";
+        var weatherIcon = data.list[i].weather[0].icon;
+        boxContainer.innerHTML += "<div class='col-2 weather-box'><h4>" + dateObject + "</h4><img src='https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'><h4>Temp: </h4><p>" + tempCelsius + "C°</p><h4>Humidity: </h4><p>" + data.list[i].main.humidity + "%</p><h4>Wind Speed: </h4><p>" + data.list[i].wind.speed + "mph</p></div>";
         }
     })
 }
