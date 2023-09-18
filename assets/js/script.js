@@ -36,7 +36,7 @@ function autoFill () {
         savedCityButton[i].addEventListener("click", function(event) {
             event.preventDefault();
             cityQuery = savedCityButton[i].id;
-            var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityQuery + "&limit=5&appid=efb4f88ccfdc769e771215392c1a61ec";
+            var queryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityQuery + "&limit=5&appid=efb4f88ccfdc769e771215392c1a61ec";
         
             fetch (queryURL)
                 //standard JSON response
@@ -57,7 +57,7 @@ function autoFill () {
 function weatherReport (lat, lon) {
 
     //establishes query URL based on lat and lon coords
-   var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=efb4f88ccfdc769e771215392c1a61ec";
+   var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=efb4f88ccfdc769e771215392c1a61ec";
 
    //sends fetch request for query URL
    fetch (queryURL2)
@@ -116,7 +116,7 @@ submitButton.addEventListener('click', function(event) {
     autoFill();
 
     //establishes query URL for the city to get lat & lon
-    var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityQuery + "&limit=5&appid=efb4f88ccfdc769e771215392c1a61ec";
+    var queryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityQuery + "&limit=5&appid=efb4f88ccfdc769e771215392c1a61ec";
 
     //sends fetch request to established URL
     fetch (queryURL)
