@@ -71,8 +71,6 @@ function weatherReport (lat, lon) {
         heroContainer.innerHTML = "";
         boxContainer.innerHTML = "";
 
-        console.log(data);
-
 
         var tempCelsius = (data.list[0].main.temp - 273.15).toFixed(1);
         var milliseconds = (data.list[0].dt * 1000);
@@ -90,7 +88,6 @@ function weatherReport (lat, lon) {
     })
 }
 
-
 //event listener for submit button
 submitButton.addEventListener('click', function(event) {
     
@@ -99,8 +96,6 @@ submitButton.addEventListener('click', function(event) {
 
     //cityQuery variable is set to search field input
     var cityQuery = citySearch.value;
-
-    //adds cityQuery to local storage array of saved cities
 
     //sets cityListString to the current local storage cityList
     var cityListString = localStorage.getItem('cityList');
