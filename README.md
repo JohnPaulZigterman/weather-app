@@ -6,6 +6,7 @@
 - The app uses the openweather API and produces current weather conditions.
 - The app also gives the user a five day forecast beyond the current day for the selected city.
 - The most recently searched city is saved as a button for easy use in the future.
+- The user interface is meant to be simple and professional without any unnecessary clutter.
 
 ## Installation
 
